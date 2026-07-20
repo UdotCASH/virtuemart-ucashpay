@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    U.CASH Pay payment plugin for VirtueMart (Joomla).
+    Install via Joomla's extension installer; it registers as a VirtueMart payment method.
+-->
+<extension method="upgrade" type="plugin" group="vmpayment">
+    <name>plg_vmpayment_ucashpay</name>
+    <author>U.CASH</author>
+    <authorEmail>support@u.cash</authorEmail>
+    <authorUrl>https://u.cash</authorUrl>
+    <copyright>(c) 2015-2026 U.CASH. All rights reserved.</copyright>
+    <license>MIT</license>
+    <creationDate>2026-07-20</creationDate>
+    <version>1.0.0</version>
+    <description>PLG_VMPAYMENT_UCASHPAY_DESC</description>
+
+    <files>
+        <filename plugin="ucashpay">ucashpay.php</filename>
+        <filename>PayUCashIntegration.php</filename>
+        <filename>script.php</filename>
+        <folder>language</folder>
+    </files>
+
+    <!-- Plugin configuration: the merchant pastes the store Cloud token + Webhook secret here. -->
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="ucashpay_cloud_token" type="text"
+                       label="PLG_VMPAYMENT_UCASHPAY_CLOUD_TOKEN_LABEL"
+                       description="PLG_VMPAYMENT_UCASHPAY_CLOUD_TOKEN_DESC"
+                       size="60" default="" />
+                <field name="ucashpay_webhook_secret" type="textarea"
+                       label="PLG_VMPAYMENT_UCASHPAY_WEBHOOK_SECRET_LABEL"
+                       description="PLG_VMPAYMENT_UCASHPAY_WEBHOOK_SECRET_DESC"
+                       rows="3" cols="50" default="" />
+                <field name="ucashpay_base_url" type="text"
+                       label="PLG_VMPAYMENT_UCASHPAY_BASE_URL_LABEL"
+                       description="PLG_VMPAYMENT_UCASHPAY_BASE_URL_DESC"
+                       size="50" default="https://pay.u.cash" />
+            </fieldset>
+        </fields>
+    </config>
+
+    <!-- VirtueMart payment-method params (shown in the payment method edit form). -->
+    <vmconfig>
+        <fields name="params">
+            <fieldset name="payment">
+                <field name="ucashpay_cloud_token" type="text" label="PLG_VMPAYMENT_UCASHPAY_CLOUD_TOKEN_LABEL"
+                       description="PLG_VMPAYMENT_UCASHPAY_CLOUD_TOKEN_DESC" size="60" default="" />
+                <field name="ucashpay_webhook_secret" type="textarea" label="PLG_VMPAYMENT_UCASHPAY_WEBHOOK_SECRET_LABEL"
+                       description="PLG_VMPAYMENT_UCASHPAY_WEBHOOK_SECRET_DESC" rows="3" cols="50" default="" />
+                <field name="ucashpay_base_url" type="text" label="PLG_VMPAYMENT_UCASHPAY_BASE_URL_LABEL"
+                       description="PLG_VMPAYMENT_UCASHPAY_BASE_URL_DESC" size="50" default="https://pay.u.cash" />
+                <field name="payment_logos" type="hidden" default="" />
+                <field name="status_pending" type="vmorderstate" scope="com_virtuemart" default="P"
+                       label="VMADM_FIELD_STATUS_PENDING" description="VMADM_FIELD_STATUS_PENDING_TIP" />
+                <field name="status_success" type="vmorderstate" scope="com_virtuemart" default="C"
+                       label="VMADM_FIELD_STATUS_SUCCESS" description="VMADM_FIELD_STATUS_SUCCESS_TIP" />
+                <field name="status_canceled" type="vmorderstate" scope="com_virtuemart" default="X"
+                       label="VMADM_FIELD_STATUS_FAIL" description="VMADM_FIELD_STATUS_FAIL_TIP" />
+            </fieldset>
+        </fields>
+    </vmconfig>
+
+    <scriptfile>script.php</scriptfile>
+
+    <updateservers>
+        <server type="extension" priority="1" name="U.CASH Pay for VirtueMart">https://u.cash/updates/virtuemart-ucashpay.xml</server>
+    </updateservers>
+</extension>
