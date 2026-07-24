@@ -3,6 +3,20 @@
 Accept crypto and card payments in your VirtueMart store through [U.CASH Pay](https://pay.u.cash).
 Buyers pay at the hosted U.CASH Pay checkout and the VirtueMart order is confirmed automatically.
 
+## Set up your pay.u.cash account
+
+You need a free U.CASH Pay account and a store before this plugin can accept payments. Settlement is non-custodial: crypto goes straight to addresses you control.
+
+1. **Sign up** at [pay.u.cash](https://pay.u.cash) with your email and password, then click the verification link in the email U.CASH Pay sends you.
+2. **Set your receive addresses.** Go to **Settings → Addresses** and enter a wallet address for each coin you want to accept. You can also use ENS, Unstoppable Domains, or FIO names instead of raw addresses. This is where crypto payments settle.
+3. **Create a store.** Go to **Account → Stores**, click **+ Add Store**, name it (for example, after this platform), and create it.
+4. **Copy the store credentials.** In that store's row, copy the **Store Cloud Token** and the **Store Webhook Secret**. Use the store-level token, not the account-wide one.
+5. **Set the webhook URL.** Paste this plugin's webhook callback URL (shown in the plugin settings below) into the store's **Store Webhook URL** field, save, then click **Test Webhook** to confirm U.CASH Pay can reach your store.
+
+Then paste the **Store Cloud Token** and **Store Webhook Secret** into the plugin configuration fields described below.
+
+> To also accept fiat cards, connect your own Stripe account under **Settings → Payment processors**. Cards run non-custodially through Stripe.
+
 ## How it works
 
 1. `plgVmConfirmedOrder()` creates a U.CASH Pay checkout via the SDK and redirects the buyer.
